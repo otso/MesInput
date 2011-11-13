@@ -1,0 +1,76 @@
+MesInput
+========
+
+MesInput ('Mes' as 'my' in French) provides personal virtual keyboards or VKBs.
+
+The project consists of:
+
+ * a server side implementation for creating VKB layouts available at:
+
+    http://www.mesinput.com
+
+ * a keyboard download client for device side.
+
+The device side client is implemented with Qt C++ and it queries the service 
+REST APIs which answers with JSON replies.
+
+The solution is an "add-on" for the Maliit input method framework available here:
+
+    http://www.maliit.org
+
+For end user instructions and screenshots in Nokia N9, see:
+
+    http://www.mesinput.com/instructions/
+
+Working with the client:
+------------------------
+
+Running:
+
+    [sbox-maemo6-armv7] > meego-run ./mesinput -software -output-level debug
+
+Layouts located in:
+
+    /usr/share/meegotouch/virtual-keyboard/layouts/
+
+Building the deb file:
+
+    [sbox-maemo6-armv7] > dpkg-buildpackage -rfakeroot
+    
+    (Note: you need cdbs for packaging: fakeroot apt-cache search cdbs)
+
+Setting layouts manually (helpful during development):
+
+    [sbox-maemo6-armv7] > gconftool-2 --type=list --set /meegotouch/inputmethods/virtualkeyboard/layouts --list-type=string [en_gb.xml,fi.xml]
+
+Create the base64 icon:
+
+    uuencode -m icon-l-mesinput.png icon-l-mesinput.png | sed -e s,^,\ ,  > icon-l-mesinput.base64
+
+Setting proxy:
+
+    In scratchbox, copy the /etc/resolv.conf from the host.
+
+    In scratchbox, set the http_proxy env variable.
+
+Server:
+-------
+
+Server URL scheme is documented here:
+
+    http://www.mesinput.com/apidocs/
+
+Acknowledgements:
+-----------------
+
+Client:
+ 
+ * The whole Maliit team for support (Dominik R. for the VKB update patch)
+ * MesFetcher based on the Buteo team sample code
+ * Page structure based on the MeeGo Touch FW music catalogue example
+ * JSON parsing, see http://qtwiki.org/Parsing_JSON_with_QT_using_standard_QT_library
+ 
+Graphics:
+
+ * MesInput icon by Otso K.
+

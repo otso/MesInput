@@ -1,0 +1,9 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=0.5
+Type=Application
+Name=MesInput
+Exec=mesinput
+Icon=/usr/share/icons/hicolor/scalable/apps/icon-l-mesinput.png
+Categories=X-MeeGo;
+OnlyShowIn=X-MeeGo;
